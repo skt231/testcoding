@@ -15,26 +15,61 @@ public class delete_arrays {
 	}
 
 	public static int[] solution(int[] arr, int[] delete_list) {
-
 		String[] string_arr = new String[arr.length];
-		for (int i = 0; i < arr.length; i++) {
+		String[] string_delete_list = new String[delete_list.length];
+		// arr 배열을 string으로 변환
+		for (int i = 0; i < string_arr.length; i++) {
 			string_arr[i] = String.valueOf(arr[i]);
 		}
-		for (String i : string_arr) {
-			for (int j : delete_list) {
-				if (i.equals(String.valueOf(j))) {
-					System.out.println(i);
-					i.replace(i, "");
-					System.out.println(i);
+		// delete_list 배열을 string으로 변환
+		for (int i = 0; i < delete_list.length; i++) {
+			string_delete_list[i] = String.valueOf(delete_list[i]);
+		}
+		// string_arr안에 delete_list값에 속해있으면 공백으로 둠
+		for (int i = 0; i < string_arr.length; i++) {
+			for (int j = 0; j < delete_list.length; j++) {
+				if (string_arr[i].equals(string_delete_list[j])) {
+					string_arr[i] = "";
 				}
 			}
 		}
-		System.out.println(Arrays.toString(string_arr));
-		int[] answer = new int[string_arr.length];
+
+		int nul = 0;
+		// string_arr안에 null값 count
 		for (int i = 0; i < string_arr.length; i++) {
-			answer[i] = Integer.parseInt(string_arr[i]);
+			if (string_arr[i] == "") {
+				nul++;
+			}
+		}
+		int[] answer = new int[string_arr.length - nul];
+		int k = 0;
+		System.out.println(string_arr.length);
+		System.out.println(Arrays.toString(string_arr));
+		// answer배열안에 삽입
+		for (int i = 0; i < string_arr.length; i++) {
+			if (!string_arr[i].equals("")) {
+				answer[k] = Integer.parseInt(string_arr[i]);
+				System.out.println(i + "    " + string_arr[i]);
+				k++;
+				System.out.println(k);
+			}
+
 		}
 		return answer;
 	}
-
+	// 2)
+	/*
+	 * ArrayList <Integer> delete = new ArrayList(); for (int i = 0; i <
+	 * delete_list.length; i++) { delete.add(delete_list[i]); }
+	 * 
+	 * ArrayList <Integer> list = new ArrayList();
+	 * 
+	 * for (int i = 0; i < arr.length; i++) { if (!delete.contains(arr[i])) {
+	 * list.add(arr[i]); } }
+	 * 
+	 * int[] answer = new int[list.size()];
+	 * 
+	 * for (int i = 0; i < list.size(); i++) { answer[i] = list.get(i); } return
+	 * answer; }
+	 */
 }
