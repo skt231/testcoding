@@ -1,6 +1,7 @@
 package test;
 //문자열 배열 strArr가 주어집니다. 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 //배열 내의 문자열 중 "ad"라는 부분 문자열을 포함하고 있는 모든 문자열을 제거하고 남은 문자열을 순서를 유지하여 배열로 
@@ -9,22 +10,23 @@ import java.util.Arrays;
 public class remove_ad {
 
 	public static void main(String[] args) {
-		String[] strArr = { "and", "notad", "abcd" };
+		String[] strArr = {"there","adre","noaad","aad","dsad" };
 		System.out.println(Arrays.toString(solution(strArr)));
 
 	}
 
 	public static String[] solution(String[] strArr) {
-		String[] answer = new String[strArr.length];
-		for (int i = 0; i < strArr.length; i++) {
-			answer[i] = ;
-			if (i.contains("ad")) {
-				System.out.println(i);
-				i = "";
-			}
-		}
+		 ArrayList<String> arrayList = new ArrayList<>();
 
-		return strArr;
+	        for (String str : strArr)
+	            if (!str.contains("ad"))
+	                arrayList.add(str);
+
+	        int idx = 0;
+	        String[] answer = new String[arrayList.size()];
+	        for (String str : arrayList)
+	            answer[idx++] = str;
+	        return answer;
 	}
 
 }
